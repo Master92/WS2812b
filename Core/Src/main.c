@@ -158,7 +158,11 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+      HAL_GPIO_WritePin(DebugLed_GPIO_Port, DebugLed_Pin, GPIO_PIN_RESET);
+      for (uint32_t i = 2400000; i > 0; i--) {asm("");}
 
+      HAL_GPIO_WritePin(DebugLed_GPIO_Port, DebugLed_Pin, GPIO_PIN_SET);
+      for (uint32_t i = 2400000; i > 0; i--) {asm("");}
   }
   /* USER CODE END Error_Handler_Debug */
 }
