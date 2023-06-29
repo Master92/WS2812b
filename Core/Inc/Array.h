@@ -63,10 +63,12 @@ public:
         pointer m_ptr;
     };
 
-    constexpr explicit Array(std::size_t count);
+    constexpr explicit Array(std::size_t size);
     virtual ~Array();
 
-    constexpr auto size() const { return m_size; }
+    constexpr auto size() const { return m_count; }
+
+    constexpr auto capacity() const { return m_size; }
 
     constexpr auto operator[](size_t index) -> T& { return m_data[index]; }
 
@@ -76,9 +78,9 @@ public:
 
     constexpr auto cbegin() const { return Iterator(m_data); }
 
-    constexpr auto end() { return Iterator(&m_data[m_size]); }
+    constexpr auto end() { return Iterator(&m_data[m_count]); }
 
-    constexpr auto cend() const { return Iterator(&m_data[m_size]); }
+    constexpr auto cend() const { return Iterator(&m_data[m_count]); }
 
     template<typename... Args>
     constexpr T& emplace_back(Args&& ... args);
@@ -138,11 +140,11 @@ Array<T>::~Array()
 }
 
 template<class T>
-constexpr Array<T>::Array(std::size_t count)
-        : m_size(count)
+constexpr Array<T>::Array(std::size_t size)
+        : m_size(size)
 {
     m_data = reinterpret_cast<T*>(std::malloc(m_size * sizeof(T)));
-    resize(count);
+    resize(size);
 }
 
 
