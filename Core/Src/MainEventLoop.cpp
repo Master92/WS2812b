@@ -37,8 +37,8 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 
 void initSystem()
 {
-    strip.fill({127, 0, 0 });
     HAL_TIM_Base_Start_IT(&htim4);
+    strip.fill({127, 0, 0 });
 }
 
 void loop()
