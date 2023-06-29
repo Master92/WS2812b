@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of WS2812b.
  *
  * WS2812b is free software: you can redistribute it and/or modify

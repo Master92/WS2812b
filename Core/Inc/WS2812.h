@@ -1,4 +1,4 @@
-/**
+/*
  * WS2812b - An STM32 DMA-based PWM generator
  * Copyright (C) 2023  Nils Hofmann
  *
